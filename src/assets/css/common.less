@@ -1,0 +1,36 @@
+/* TIP: 公共样式 */
+
+/* AIM: 去掉滚动条 */
+.com_hide_scrollbar {
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.com_hide_scrollbar::-webkit-scrollbar {
+  display: none;
+  width: 0;
+}
+
+/* AIM: 单行省略号 */
+.com_single_ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* AIM: 多行省略 */
+.com_multiline_ellipsis(@rows : 2) {
+  display: -webkit-box;
+  overflow: hidden;
+  word-break: break-all;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: @rows;
+  -webkit-box-orient: vertical;
+}
+.com_double_ellipsis {
+  .com_multiline_ellipsis(2);
+}
+.com_treble_ellipsis {
+  .com_multiline_ellipsis(3);
+}
