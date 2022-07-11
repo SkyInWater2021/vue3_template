@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import BaseCard from '@/base-ui/card'
 import BaseDescription from '@/base-ui/description'
 import BaseTextLink from '@/base-ui/text-link'

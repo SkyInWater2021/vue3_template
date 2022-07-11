@@ -1,6 +1,8 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref, onMounted, watchEffect } from 'vue'
+
 import { EChartsOption } from 'echarts'
+
 import useEchart from '../hooks/useEchart'
 
 interface IProps {

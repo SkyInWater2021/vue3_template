@@ -1,5 +1,4 @@
 // TIP: 操作浏览器缓存的工具函数
-
 class LocalCache {
   setCache(key: string, value: any) {
     window.localStorage.setItem(key, JSON.stringify(value))

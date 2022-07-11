@@ -1,16 +1,16 @@
 // TIP: request 的基本配置信息
-const TIME_OUT = 10000
-let BASE_URL = ''
-const BASE_HEADER = {
-  'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-}
+type TURLMap = 'development' | 'production' | 'test'
 
-if (process.env.NODE_ENV === 'development') {
-  BASE_URL = '/api'
-} else if (process.env.NODE_ENV === 'production') {
-  BASE_URL = '/'
-} else if (process.env.NODE_ENV === 'test') {
-  BASE_URL = '/'
+const URLMap = {
+  development: '/api',
+  production: '/',
+  test: '/'
 }
-
-export { BASE_URL, TIME_OUT, BASE_HEADER }
+const BASE_URL = URLMap[process.env.NODE_ENV as TURLMap]
+const BASE_TIME_OUT = 10000
+const BASE_HEADER = {}
+export default {
+  BASE_URL,
+  BASE_TIME_OUT,
+  BASE_HEADER
+}

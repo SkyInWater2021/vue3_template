@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { userLogin, getUserInfo } from '@/services/api/loginAPI'
+import loginApi from '@/services/api/loginAPI'
 
 export const useLoginStore = defineStore({
   id: 'loginStore',
@@ -9,12 +9,15 @@ export const useLoginStore = defineStore({
   getters: {},
   actions: {
     async axiosDemo() {
-      const login = await userLogin({
+      const login = await loginApi.userLogin({
         account: 'admin',
         password: '123'
       })
-      const userInfo = await getUserInfo()
+
+      const userInfo = await loginApi.fetchUserInfo()
       console.log(login, userInfo)
     }
   }
 })
+
+export const loginStore = useLoginStore()

@@ -1,6 +1,8 @@
 // TIP: services 的统一出口
+import type { AxiosRequestConfig, AxiosResponse } from 'axios'
+
 import HXRequest from './request'
-import { BASE_URL, BASE_HEADER, TIME_OUT } from './config'
+import requestConfig from './config'
 
 // AIM: 创建请求实例 requestInstence
 
@@ -11,25 +13,20 @@ import { BASE_URL, BASE_HEADER, TIME_OUT } from './config'
    responseInterceptor: (res) => {} // 响应成功的拦截
    responseInterceptorCatch: (err) => {} // 响应失败的拦截
 */
+const interceptorHooks = () => {
+  return {
+    requestInterceptor: (config: AxiosRequestConfig) => config,
+    requestInterceptorCatch: (err: any) => err,
+    responseInterceptor: (res: AxiosResponse) => res,
+    responseInterceptorCatch: (err: any) => err
+  }
+}
 
 const requestInstence = new HXRequest({
-  baseURL: BASE_URL,
-  timeout: TIME_OUT,
-  headers: BASE_HEADER,
-  interceptorHooks: {
-    requestInterceptor: (config) => {
-      return config
-    },
-    requestInterceptorCatch: (err) => {
-      return err
-    },
-    responseInterceptor: (res) => {
-      return res
-    },
-    responseInterceptorCatch: (err) => {
-      return err
-    }
-  }
+  baseURL: requestConfig.BASE_URL,
+  timeout: requestConfig.BASE_TIME_OUT,
+  headers: requestConfig.BASE_HEADER,
+  interceptorHooks: interceptorHooks()
 })
 
 export { requestInstence }
